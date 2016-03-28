@@ -14,9 +14,9 @@ Run two commands to build and deploy the project:
 ### Other Info ###
 
 Important constraints:  
-1. SSL communication is computationally very expensive, so you need to protect your commmuication through HTTPS only when the credit card number is in transit. All other communication between your server and the browser should be done through plain HTTP, not HTTPS.
+* SSL communication is computationally very expensive, so you need to protect your commmuication through HTTPS only when the credit card number is in transit. All other communication between your server and the browser should be done through plain HTTP, not HTTPS.
 
-2. Due to the heavy load on the DBMS server at oak, you have to minimize the number of requests sent to oak. Clearly, you cannot avoid contacting oak to obtain the item information while you generate the "item page" (the communication from (0) to (1) in the above figure), but beyond that, the tomcat server CANNOT contact oak for the rest of the transaction. In particular, you are NOT allowed to send a request to oak while you are generating the "credit-card-input page" or the "confirmation page" in order to obtain the item information that is being purchased (i.e., the communication from (3) to oak or from (5) to oak is not allowed).
+* Due to the heavy load on the DBMS server at oak, you have to minimize the number of requests sent to oak. Clearly, you cannot avoid contacting oak to obtain the item information while you generate the "item page" (the communication from (0) to (1) in the above figure), but beyond that, the tomcat server CANNOT contact oak for the rest of the transaction. In particular, you are NOT allowed to send a request to oak while you are generating the "credit-card-input page" or the "confirmation page" in order to obtain the item information that is being purchased (i.e., the communication from (3) to oak or from (5) to oak is not allowed).
 
 Q1: For which communication(s) do you use the SSL encryption? If you are encrypting the communication from (1) to (2) in Figure 2, for example, write (1)→(2) in your answer.  
 Encrypt from (4)->(5) and (5)->(6) because the credit card number is in transit at these times.
